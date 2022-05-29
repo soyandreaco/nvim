@@ -1,6 +1,5 @@
- --
- --
-------------------------------------------------
+------------------------------------------------------
+--
 --                   .    ..			   				 --
 --                   |\__/,|   (`\						 --
 --                 _.|o o  |_.  ) )						 --
@@ -24,6 +23,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   print ("Installing packer close and reopen Neovim...")
   vim.cmd [[packadd packer.nvim]]
 end
+
 
 -- Autocommand that reload neovim
 vim.cmd([[
@@ -53,126 +53,172 @@ function get_setup(name)
   return string.format('require("setup/%s")', name)
 end
 
-return packer.startup(function(use)
+return require("packer").startup({
 
--- My plugins here
+  function(use)
 
-  use {"wbthomason/packer.nvim"}
+	-- My plugins here
 
-  -- Fzf
-  use {"junegunn/fzf", run = ":call fzf#install()"}
-  use {"junegunn/fzf.vim"}
+	use("wbthomason/packer.nvim")
 
-  -- Icons
-  use {"kyazdani42/nvim-web-devicons"}
- 
-  -- Lualine
-  use {"nvim-lualine/lualine.nvim",
-	config = get_setup("lualine"),
-	requires = {"kyazdani42/nvim-web-devicons", opt = true}
-  }
 
-  -- Surround
-  use {"tpope/vim-surround"}
-  use {"tpope/vim-repeat"}
+	-- Fzf
+	use({
+		"junegunn/fzf",
+		run = ":call fzf#install()"
+	})
+	use("junegunn/fzf.vim")
 
--- Treesitter
-  use {"nvim-treesitter/nvim-treesitter",
-    run = ':TSUpdate',
-	requires = {
-	  "nvim-treesitter/playground",
-	  "nvim-treesitter/nvim-treesitter-refactor",
-	  "nvim-treesitter/nvim-treesitter-textobjects",
-	}
-  }
 
-  -- Telescope
-  use {"nvim-telescope/telescope.nvim",
-	requires = {
-	  "nvim-lua/plenary.nvim",
-	  "nvim-lua/popup.nvim"
-	}
-  }
+	-- Icons
+	use("kyazdani42/nvim-web-devicons")
 
-  -- Emmet
-  use {"mattn/emmet-vim"}
 
-  -- Lsp
-  use {"williamboman/nvim-lsp-installer",
-	config = get_setup("lspinstaller")
-  }
-  use {"neovim/nvim-lspconfig",
-	config = get_setup("lspconfig")
-  }
+	-- Lualine
+	use({
+		"nvim-lualine/lualine.nvim",
+		config = get_setup("lualine"),
+		requires = {"kyazdani42/nvim-web-devicons", opt = true}
+	})
 
-  -- Completion
-  use {"hrsh7th/nvim-cmp",
-	config = get_setup("nvimcmp")
-  }
-  use {"hrsh7th/cmp-buffer"}
-  use {"hrsh7th/cmp-path"}
-  use {"hrsh7th/cmp-nvim-lsp"}
-  use {"hrsh7th/cmp-nvim-lua"}
-  use {"hrsh7th/cmp-cmdline"}
 
-  -- Lua snips
-  use {"hrsh7th/vim-vsnip"}
-  use {"hrsh7th/cmp-vsnip"}
-  use {"hrsh7th/vim-vsnip-integ"}
-  use {"rafamadriz/friendly-snippets"}
-  use {"saadparwaiz1/cmp_luasnip"}
-  use {"L3MON4D3/LuaSnip"}
+	-- Surround
+	use("tpope/vim-surround")
+	use("tpope/vim-repeat")
 
-  -- Lua
-  use {"folke/which-key.nvim"}
 
-  -- Git
-  use {"lewis6991/gitsigns.nvim"}
-  use {"mbbill/undotree"}
+	-- Treesitter
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ':TSUpdate',
+		config = get_setup("treesitter"),
+		requires = {
+		  "nvim-treesitter/playground",
+		  "nvim-treesitter/nvim-treesitter-refactor",
+		  "nvim-treesitter/nvim-treesitter-textobjects",
+		}
+	})
 
-  -- Scheme
-  use {"EdenEast/nightfox.nvim",
-	config = get_setup("nightfox"),
-  }
 
-  -- Autopairs
-  use{"windwp/nvim-autopairs",
-    config = get_setup("autopairs"),
-  }
+	-- Telescope
+	use({
+		"nvim-telescope/telescope.nvim",
+		config = get_setup("telescope"),
+		requires = {
+		  "nvim-lua/plenary.nvim",
+		  "nvim-lua/popup.nvim"
+		}
+	})
 
-  -- Hop
-  use { 'phaazon/hop.nvim',
-    branch = 'v1', -- optional but strongly recommended
-	config = function()
-    -- you can configure Hop the way you like here; see :h hop-config
-	  require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-	end
-  }
 
-  -- Trouble
-  use { "folke/trouble.nvim",
-	requires = "kyazdani42/nvim-web-devicons",
-	config = function()
-    require("trouble").setup {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
-	end
-  }
+	-- Emmet
+	use("mattn/emmet-vim")
 
-  use { "prettier/vim-prettier",
-	run = 'npm install',
-  }
 
-  use {'lambdalisue/fern.vim'}
-  use {'lambdalisue/nerdfont.vim'}
-  use {'lambdalisue/fern-renderer-nerdfont.vim'}
+	-- Lsp
+	use({
+		"williamboman/nvim-lsp-installer",
+		config = get_setup("lspinstaller")
+	})
 
+	use({
+		"neovim/nvim-lspconfig",
+		config = get_setup("lspconfig")
+	})
+
+
+	-- Completion
+	use({
+		"hrsh7th/nvim-cmp",
+		config = get_setup("nvimcmp")
+	})
+
+	use("hrsh7th/cmp-buffer")
+	use("hrsh7th/cmp-path")
+	use("hrsh7th/cmp-nvim-lsp")
+  	use("hrsh7th/cmp-nvim-lua")
+	use("hrsh7th/cmp-cmdline")
+
+
+	-- Lua snips
+	use("hrsh7th/vim-vsnip")
+	use("hrsh7th/cmp-vsnip")
+	use("hrsh7th/vim-vsnip-integ")
+	use("rafamadriz/friendly-snippets")
+	use("saadparwaiz1/cmp_luasnip")
+	use("L3MON4D3/LuaSnip")
+
+
+	-- Lua
+	use("folke/which-key.nvim")
+
+
+	-- Git
+	use("lewis6991/gitsigns.nvim")
+	use("mbbill/undotree")
+
+
+	-- Scheme
+	use({
+		"EdenEast/nightfox.nvim",
+		config = get_setup("nightfox")
+	})
+
+
+	-- Autopairs
+	use({
+		"windwp/nvim-autopairs",
+		config = get_setup("autopairs")
+	})
+
+
+	-- Hop
+	use({
+		"phaazon/hop.nvim",
+		branch = 'v1', -- optional but strongly recommended
+		config = get_setup("hop")
+	})
+
+
+	-- Trouble
+	use({
+		"folke/trouble.nvim",
+		requires = {'kyazdani42/nvim-web-devicons', opt = true}
+	})
+
+
+	-- Prettier
+	use({
+		"prettier/vim-prettier",
+		run = 'npm install'
+	})
+
+
+	-- colorizer
+	use({
+		"norcalli/nvim-colorizer.lua",
+		event = "BufReadPre",
+		cmd = "ColorizerToggle"
+	})
+
+
+	-- fern
+	use("lambdalisue/fern.vim")
+	use("lambdalisue/nerdfont.vim")
+	use("lambdalisue/fern-renderer-nerdfont.vim")
+
+
+	--Bufferline
+	use({
+		'akinsho/bufferline.nvim',
+		tag = "v2.*",
+		requires = {'kyazdani42/nvim-web-devicons', opt = true},
+		config = get_setup("bufferline")
+	})
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
     require('packer').sync()
   end
-end)
+end})
