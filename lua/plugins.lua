@@ -25,7 +25,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 
--- Autocommand that reload neovim
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -198,7 +197,8 @@ return require("packer").startup({
 	use({
 		"norcalli/nvim-colorizer.lua",
 		event = "BufReadPre",
-		cmd = "ColorizerToggle"
+		cmd = "ColorizerToggle",
+		config = get_setup("colorizer")
 	})
 
 
@@ -215,6 +215,10 @@ return require("packer").startup({
 		requires = {'kyazdani42/nvim-web-devicons', opt = true},
 		config = get_setup("bufferline")
 	})
+
+
+	-- Comments
+	use{"terrortylor/nvim-comment"}
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
