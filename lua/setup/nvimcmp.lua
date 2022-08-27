@@ -1,5 +1,3 @@
-local protocol = require('vim.lsp.protocol')
-local configs = require('lspconfig/configs')
 
 local lsp_symbols = {
     Text = "   (Text) ",
@@ -55,11 +53,11 @@ local lsp_symbols = {
       ['<CR>'] = cmp.mapping.confirm({ select = true }), 
 	  -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
-    sources = cmp.config.sources({
+       sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-	  { name = 'vsnip' }, -- For vsnip users.
-	  { name = 'path' },
-	  { name = 'buffer', keyword_lenght = 4 },
+      { name = 'vsnip' }, -- For vsnip users.
+      { name = 'path' },
+	{ name = 'buffer', keyword_lenght = 4 },
 	  -- { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
@@ -69,7 +67,7 @@ local lsp_symbols = {
     completion = {completeopt = 'menu,menuone,noinsert'},
     formatting = {
         format = function(entry, item)
-            item.kind = lsp_symbols[item.kind] .. " " .. item.kind
+        item.kind = lsp_symbols[item.kind] .. " " .. item.kind
             -- set a name for each source
             item.menu = ({
                 spell = "[Spell]",
@@ -146,34 +144,75 @@ local lsp_symbols = {
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-  require('lspconfig')['html'].setup {
-    capabilities = capabilities,
-  }
-
   require('lspconfig')['tsserver'].setup {
     capabilities = capabilities,
   }
 
-  require('lspconfig')['sumneko_lua'].setup {
-    capabilities = capabilities
+  require('lspconfig')['cssmodules_ls'].setup {
+    capabilities = capabilities,
   }
 
   require('lspconfig')['emmet_ls'].setup {
-    capabilities = capabilities
+    capabilities = capabilities,
+  }
+   
+  require('lspconfig')['tailwindcss'].setup {
+    capabilities = capabilities,
+  }
+
+  require('lspconfig')['vimls'].setup {
+    capabilities = capabilities,
+  }
+
+  require('lspconfig')['sumneko_lua'].setup {
+    capabilities = capabilities,
+  }
+
+  require('lspconfig')['pylsp'].setup {
+    capabilities = capabilities,
+  }
+
+  require('lspconfig')['slint_lsp'].setup {
+    capabilities = capabilities,
   }
 
   require('lspconfig')['cssls'].setup {
-    capabilities = capabilities
+    capabilities = capabilities,
+  }
+ 
+  require('lspconfig')['eslint'].setup {
+    capabilities = capabilities,
+  }
+ 
+  require('lspconfig')['quick_lint_js'].setup {
+    capabilities = capabilities,
   }
 
-  require('lspconfig')['pyright'].setup {
-    capabilities = capabilities
+  require('lspconfig')['html'].setup {
+    capabilities = capabilities,
+  }
+ 
+  require('lspconfig')['graphql'].setup {
+    capabilities = capabilities,
+  }
+ 
+  require('lspconfig')['jedi_language_server'].setup {
+    capabilities = capabilities,
   }
 
   require('lspconfig')['jsonls'].setup {
-    capabilities = capabilities
+    capabilities = capabilities,
   }
 
-  require('lspconfig')['prosemd_lsp'].setup {
-    capabilities = capabilities
+  require('lspconfig')['pyright'].setup {
+    capabilities = capabilities,
   }
+
+  require('lspconfig')['sqlls'].setup {
+    capabilities = capabilities,
+  }
+
+  require('lspconfig')['sqls'].setup {
+    capabilities = capabilities,
+  }
+

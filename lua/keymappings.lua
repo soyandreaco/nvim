@@ -14,16 +14,9 @@ keymap("n", "<Leader>q", ":q<CR>", opts)
 keymap("n", "<Leader>Q", ":q!<CR>", opts)
 keymap("n", "<Leader>tt", ":t.<CR>", opts)
 
--- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
-
-keymap("n", "<Leader>pv", ":Vex<CR>", opts)
-keymap("n", "<Leader>ph", ":Sex<CR>", opts)
-
--- keymap("n", "<Leader>pf", ":Files<CR>", opts)
+-- Bufferline
+keymap("n", "<Leader>uu", ":BufferLineCycleNext", opts)
+keymap("n", "<Leader>oo", ":BufferLineCyclePrev", opts)
 
 --- Copy full file
 keymap("n", "<Leader>Y", 'gg"+yG', opts)
@@ -32,11 +25,5 @@ keymap("n", "<Leader>Y", 'gg"+yG', opts)
 vim.g.user_emmet_mode = "n"
 vim.g.user_emmet_leader_key = ","
 
--- Telescope Using Lua functions
-keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
-keymap("n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
-keymap("n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
-keymap("n", "<leader>fr", "<cmd>lua require('telescope.builtin').registers()<cr>", opts)
-keymap("n", "<leader>ftt", "<cmd>lua require('telescope.builtin').help_tags()<cr>", opts)
--- With Treesitter
-keymap("n", "<leader>ts", "<cmd>lua require('telescope.builtin').treesitter()<cr>", opts)
+-- Neo-tree
+keymap('n', '<C-n>', ':Neotree toggle<CR>', opts) -- open/close
