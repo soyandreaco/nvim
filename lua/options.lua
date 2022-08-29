@@ -1,7 +1,7 @@
 local opt = vim.opt
 
 opt.termguicolors	= true
-opt.clipboard 		= "unnamed"
+opt.clipboard 		= "unnamedplus"
 opt.cursorline		= true
 opt.encoding 		= "utf-8" 			-- Set default encoding to UTF-8
 opt.mouse			= "a"
@@ -12,7 +12,7 @@ opt.showcmd			= true
 opt.showmatch		= true
 
 --opt.cmdheight		= 2 				-- More space in the command line
---opt.showmode 		= false 			-- ya no necesitamos ver cosas como -- INSERTAR --
+opt.showmode 		= false 			-- ya no necesitamos ver cosas como -- INSERTAR --
 opt.syntax			= "enable"
 opt.sw				= 2
 
@@ -28,3 +28,5 @@ opt.autoindent		= true  			-- Start new lines correctly indented
 -- Search
 opt.hlsearch		= true				-- Highlight all search matches
 opt.incsearch		= true
+
+opt.swapfile        = false             -- Create swapfile

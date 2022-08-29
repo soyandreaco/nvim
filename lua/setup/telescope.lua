@@ -7,6 +7,8 @@ telescope.setup {
     -- Default configuration for telescope goes here:
     -- config_key = value,
     file_sorter = require('telescope.sorters').get_fzy_sorter,
+    initial_mode = "insert",
+    prompt_position = "top",
     selection_caret = ' ',
     prompt_prefix = '  ',
     color_devicons = true,
