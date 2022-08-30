@@ -2,6 +2,7 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 
+
 telescope.setup {
   defaults = {
     -- Default configuration for telescope goes here:
@@ -10,7 +11,7 @@ telescope.setup {
     initial_mode = "insert",
     prompt_position = "top",
     selection_caret = ' ',
-    prompt_prefix = '  ',
+    prompt_prefix = '  ',
     color_devicons = true,
 
     file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
@@ -27,7 +28,8 @@ telescope.setup {
         ["<C-k>"] = actions.move_selection_previous,
 		["<Esc>"] = actions.close
       }
-    }
+    },
+
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:
@@ -44,5 +46,6 @@ telescope.setup {
     --   extension_config_key = value,
     -- }
     -- please take a look at the readme of the extension you want to configure
+
   }
 }

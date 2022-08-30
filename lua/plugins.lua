@@ -174,6 +174,7 @@ return require('packer').startup(function(use)
         requires = { 'kyazdani42/nvim-web-devicons' },
         config = [[require('setup.alpha')]]
     }
+
     use {
         'lukas-reineke/indent-blankline.nvim',
         config = [[require('setup.blankline')]]
@@ -181,8 +182,21 @@ return require('packer').startup(function(use)
 
     use 'folke/which-key.nvim'
 
+    use 'junegunn/limelight.vim'
+
     -- git
     use 'lewis6991/gitsigns.nvim'
+
+    use {
+        "tpope/vim-fugitive",
+        event = "BufRead"
+    }
+
+    use {
+        'TimUntersberger/neogit',
+        cmd = "Neogit",
+        config =[[require('setup.neogit')]]
+     }
 
 
     -- Comments
@@ -192,6 +206,12 @@ return require('packer').startup(function(use)
     }
 
     use 'JoosepAlviste/nvim-ts-context-commentstring'
+
+    -- Markdown
+    use({
+        "iamcco/markdown-preview.nvim",
+
+    })
 
 end)
 

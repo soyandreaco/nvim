@@ -29,8 +29,12 @@ vim.g.user_emmet_leader_key = ","
 keymap('n', '<C-n>', ':Neotree toggle<CR>', opts) -- open/close
 
 -- Telescope
-keymap("n", "<C-F>", ":Telescope live_grep<CR>", opts)
-keymap("n", "<C-P>", ":Telescope find_files<CR>", opts)
+keymap("n", "<Leader>tp", ":Telescope live_grep<CR>", opts)
+keymap("n", "<Leader>tf", ":Telescope find_files<CR>", opts)
+keymap("n", "<Leader>tb", ":Telescope buffers<CR>", opts)
+keymap("n", "<Leader>tg", ":Telescope git_status<CR>", opts)
+keymap("n", "<Leader>ty", ":Telescope command_history<CR>", opts)
+keymap("n", "<Leader>th", ":Telescope help_tags<CR>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
