@@ -6,4 +6,4 @@ require("mason").setup({
             package_uninstalled = "✗"
         }
     }
-}) 
+})
