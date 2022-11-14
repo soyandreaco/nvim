@@ -46,12 +46,18 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
--- Normal --
--- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+
+-- Mover
+-- Normal
+keymap("n", "<C-k>", ":m .-2<CR>==", opts)
+keymap("n", "<C-j>", ":m .+1<CR>==", opts)
+-- Visual
+keymap("v", "<C-k>", ":m '<-2<CR>gv=gv", opts)
+keymap("v", "<C-j>", ":m '>+1<CR>gv=gv", opts)
+-- Insert
+keymap("i", "<C-k>", "<ESC>:m .-2<CR>==gi", opts)
+keymap("i", "<C-j>", "<ESC>:m .+1<CR>==gi", opts)
+
 
 
 -- -- Revisar
