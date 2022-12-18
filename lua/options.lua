@@ -26,7 +26,9 @@ opt.smartindent		= true
 opt.autoindent		= true  			-- Start new lines correctly indented
 
 -- Search
-opt.hlsearch		= true				-- Highlight all search matches
+opt.hlsearch		= false				-- Highlight all search matches
 opt.incsearch		= true
 
 opt.swapfile        = false             -- Create swapfile
+opt.termguicolors   = true
+

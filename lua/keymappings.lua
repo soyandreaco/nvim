@@ -13,6 +13,8 @@ keymap("n", "<Leader>W", ":wq<CR>", opts)
 keymap("n", "<Leader>q", ":Bdelete<CR>", opts)
 keymap("n", "<Leader>Q", ":q!<CR>", opts)
 keymap("n", "<Leader>tt", ":t.<CR>", opts)
+keymap("n", "<Leader>m", ":Ex<CR>", opts)
+
 
 -- Bufferline
 keymap("n", "<Leader>uu", ":BufferLineCycleNext<CR>", opts)
@@ -29,12 +31,24 @@ vim.g.user_emmet_leader_key = ","
 keymap('n', '<C-n>', ':Neotree toggle<CR>', opts) -- open/close
 
 -- Telescope
-keymap("n", "<Leader>tp", ":Telescope live_grep<CR>", opts)
-keymap("n", "<Leader>tf", ":Telescope find_files<CR>", opts)
-keymap("n", "<Leader>tb", ":Telescope buffers<CR>", opts)
-keymap("n", "<Leader>tg", ":Telescope git_status<CR>", opts)
-keymap("n", "<Leader>ty", ":Telescope command_history<CR>", opts)
-keymap("n", "<Leader>th", ":Telescope help_tags<CR>", opts)
+--keymap("n", "<Leader>tp", ":Telescope live_grep<CR>", opts)
+--keymap("n", "<Leader>tf", ":Telescope find_files<CR>", opts)
+--keymap("n", "<Leader>tb", ":Telescope buffers<CR>", opts)
+--keymap("n", "<Leader>tg", ":Telescope git_status<CR>", opts)
+--keymap("n", "<Leader>ty", ":Telescope command_history<CR>", opts)
+--keymap("n", "<Leader>th", ":Telescope help_tags<CR>", opts)
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>tf', builtin.find_files, {})
+vim.keymap.set('n', '<leader>tr', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>tb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>th', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>tg', builtin.git_files, {})
+--vim.keymap.set('n', '<leader>ts', builtin.grep_string, {})
+vim.keymap.set('n', '<leader>ts', function()
+	builtin.grep_string({ search = vim.fn.input("Grep > ") });
+end)
+
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -55,8 +69,8 @@ keymap("n", "<C-j>", ":m .+1<CR>==", opts)
 keymap("v", "<C-k>", ":m '<-2<CR>gv=gv", opts)
 keymap("v", "<C-j>", ":m '>+1<CR>gv=gv", opts)
 -- Insert
-keymap("i", "<C-k>", "<ESC>:m .-2<CR>==gi", opts)
 keymap("i", "<C-j>", "<ESC>:m .+1<CR>==gi", opts)
+keymap("i", "<C-k>", "<ESC>:m .-2<CR>==gi", opts)
 
 
 

@@ -23,6 +23,7 @@ vim.cmd([[
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
 	return
+    
 end
 
 -- Have packer use a popup window
@@ -39,7 +40,7 @@ return require('packer').startup(function(use)
 	-- My plugins here
 
     -- Packer
-	use 'wbthomason/packer.nvim'
+    use 'wbthomason/packer.nvim'
 
     -- For Other plugins
     use 'nvim-lua/plenary.nvim'
@@ -47,6 +48,7 @@ return require('packer').startup(function(use)
     --Scheme
     use {
         'bluz71/vim-nightfly-guicolors',
+
         config = [[require('setup.nightfly')]]
     }
 
@@ -116,35 +118,60 @@ return require('packer').startup(function(use)
 
     use 'neovim/nvim-lspconfig'
 
+
     use 'folke/lsp-colors.nvim'
 
 
     -- Completition
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-
     use {
-        'hrsh7th/nvim-cmp',
-        config = [[require('setup.nvimcmp')]]
+        'VonHeikemen/lsp-zero.nvim',
+        requires = {
+            -- LSP Support
+            {'neovim/nvim-lspconfig'},
+            {'williamboman/mason.nvim'},
+            {'williamboman/mason-lspconfig.nvim'},
+
+            -- Autocompletion
+            {'hrsh7th/nvim-cmp',
+                config = [[require('setup.nvimcmp')]]},
+            {'hrsh7th/cmp-buffer'},
+            {'hrsh7th/cmp-path'},
+            {'hrsh7th/cmp-cmdline'},
+            {'hrsh7th/cmp-vsnip'},
+            {'hrsh7th/cmp-git'},
+            {'hrsh7th/vim-vsnip'},
+            {'hrsh7th/vim-vsnip-integ'},
+            {'saadparwaiz1/cmp_luasnip'},
+            {'hrsh7th/cmp-nvim-lsp'},
+            {'hrsh7th/cmp-nvim-lua'},
+
+            -- Snippets
+            {'L3MON4D3/LuaSnip'},
+            {'rafamadriz/friendly-snippets'},
+        },
+
+        config = [[require('setup.lspzero')]],
     }
-
+    --use 'hrsh7th/cmp-nvim-lsp'
+    --use 'hrsh7th/cmp-buffer'
+    --use 'hrsh7th/cmp-path'
+    --use {
+    --    'hrsh7th/nvim-cmp',
+    --    config = [[require('setup.nvimcmp')]]
+    --}
     -- For vsnip users
-	use 'hrsh7th/cmp-vsnip'
-    use 'hrsh7th/vim-vsnip'
-
+	--use 'hrsh7th/cmp-vsnip'
+    --use 'hrsh7th/vim-vsnip'
     -- For luasnip users
-	use 'L3MON4D3/LuaSnip'
-	use 'saadparwaiz1/cmp_luasnip'
-
+	--use 'L3MON4D3/LuaSnip'
+	--use 'saadparwaiz1/cmp_luasnip'
     -- Lua Snips
-    use 'hrsh7th/cmp-nvim-lua'
+    --use 'hrsh7th/cmp-nvim-lua'
 
     -- Others snippets
-    use 'hrsh7th/cmp-git'
-    use 'hrsh7th/vim-vsnip-integ'
-	use 'rafamadriz/friendly-snippets'
+    --use 'hrsh7th/cmp-git'
+    --use 'hrsh7th/vim-vsnip-integ'
+	--use 'rafamadriz/friendly-snippets'
 
     -- Neo-tree
     use {
@@ -154,7 +181,8 @@ return require('packer').startup(function(use)
             "nvim-lua/plenary.nvim",
             "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
             "MunifTanjim/nui.nvim",
-        }
+        },
+        config = [[require('setup.neotree')]]
     }
 
     -- Telescope
@@ -217,7 +245,7 @@ return require('packer').startup(function(use)
      use ({
         'prettier/vim-prettier',
         run = 'yarn install',
-        ft = {'javascript', 'typescript', 'css', 'less', 'scss', 'graphql', 'markdown', 'vue', 'html'}
+        ft = {'javascript', 'typescript', 'css', 'less', 'scss', 'graphql', 'markdown', 'vue', 'html', 'rust'}
     })
 
 end)
