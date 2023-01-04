@@ -213,7 +213,15 @@ return require('packer').startup(function(use)
     use 'junegunn/limelight.vim'
 
     -- git
-    use 'lewis6991/gitsigns.nvim'
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = [[require('setup.gitsigns')]]
+    }
+
+    use {
+        'sindrets/diffview.nvim',
+        requires = {'nvim-lua/plenary.nvim'}
+    }
 
     use {
         "tpope/vim-fugitive",

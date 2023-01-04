@@ -43,7 +43,11 @@ vim.keymap.set('n', '<leader>tf', builtin.find_files, {})
 vim.keymap.set('n', '<leader>tr', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>tb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>th', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>tg', builtin.git_files, {})
+vim.keymap.set('n', '<leader>gf', builtin.git_files, {})
+vim.keymap.set('n', '<leader>gs', builtin.git_status, {})
+vim.keymap.set('n', '<leader>gb', builtin.git_branches, {})
+vim.keymap.set('n', '<leader>gc', builtin.git_commits, {})
+
 --vim.keymap.set('n', '<leader>ts', builtin.grep_string, {})
 vim.keymap.set('n', '<leader>ts', function()
 	builtin.grep_string({ search = vim.fn.input("Grep > ") });
